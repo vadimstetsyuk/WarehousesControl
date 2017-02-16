@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { toast } from "angular2-materialize";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app',
@@ -8,7 +8,9 @@ import { toast } from "angular2-materialize";
 })
 export class AppComponent implements OnInit {
 
-  ngOnInit(): void {
+  public constructor(private _router: Router) {}
 
+  ngOnInit(): void {
+      setTimeout(() => this._router.navigate(["/warehouses"]));
   }
 }

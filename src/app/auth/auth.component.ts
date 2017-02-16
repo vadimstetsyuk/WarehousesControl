@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    selector: 'signin-form',
+    selector: 'auth',
     templateUrl: 'auth.component.html',
     styleUrls: ['auth.component.css']
 })

@@ -17,7 +17,7 @@ const appRoutes: Routes = [
   { path: 'reports', component: ReportsComponent, data: { title: 'Reports page' } },
   { path: 'settings', component: SettingsComponent, data: { title: 'Settings page' } },
   { path: 'warehouses', component: WarehousesComponent, data: { title: 'Warehouses page' } },
-  { path: 'error', component: ErrorsComponent, data: { title: 'Errors page' } }
+  { path: '**', component: ErrorsComponent, data: { title: 'Errors page' } }
 ];
 
 @NgModule({
@@ -33,7 +33,8 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterializeModule
+    MaterializeModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
