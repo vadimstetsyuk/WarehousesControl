@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     moduleId: module.id,
@@ -8,9 +9,11 @@ import { Component } from '@angular/core';
 })
 
 export class AuthComponent {
-    title: string;
 
-    constructor() {
-        this.title = "The auth page";
+    constructor(private _router: Router) {
+    }
+
+    checkForm() {
+        window.location.href = '/home/warehouses';
     }
 }

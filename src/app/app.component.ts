@@ -8,9 +8,29 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  public constructor(private _router: Router) {}
+  public constructor(private _router: Router) {
+  }
 
   ngOnInit(): void {
-      setTimeout(() => this._router.navigate(["/warehouses"]));
+      // setTimeout(() => this._router.navigate(["/auth"]));
+  }
+
+  public showTabs(): boolean {
+    let result = false;
+
+    switch(this._router.url) {
+      case '/home':
+      case '/home/warehouses':
+      case '/home/reports':
+      case '/home/settings':
+                result = true;
+                break;
+      default:
+                result = false;
+                break;
+    }
+    console.log(this._router.url);
+    
+    return result;
   }
 }

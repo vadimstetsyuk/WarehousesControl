@@ -1,18 +1,4 @@
 <div>
-    <nav class="nav-extended">
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo"><i class="material-icons">cloud</i>Warehouses control</a>>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="/help"><i class="material-icons">help</i></a></li>
-            </ul>
-        </div>
-        <div class="nav-content">
-            <ul class="tabs tabs-transparent">
-                <li class="tab"><a routerLink="/warehouses">Warehouses</a></li>
-                <li class="tab"><a routerLink="/reports">Reports</a></li>
-                <li class="tab"><a routerLink="/settings">Settings</a></li>
-            </ul>
-        </div>
-    </nav>
+    <top-menu [isActiveTabs]="showTabs()"></top-menu>
     <router-outlet></router-outlet>
 </div>

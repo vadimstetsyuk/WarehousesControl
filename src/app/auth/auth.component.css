@@ -1,0 +1,20 @@
+  .form-box{
+  background: #fff;
+  margin: 65px auto;
+  max-width: 500px;
+  box-shadow: 0 3px 6px 0px rgba(0,0,0,0.16), 0 3px 6px 0px rgba(0,0,0,0.23);
+}
+form#login-form {
+  overflow: hidden;
+  position: relative;
+  padding: 40px;
+}
+.head {
+  color: #fff;
+  font-size: 34px;
+  font-weight: normal;
+  padding: 50px 0;
+  text-align: center;
+  text-transform: uppercase;
+  background: #6498fe;
+}
