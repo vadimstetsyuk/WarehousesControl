@@ -1,0 +1,16 @@
+.card {
+    width: 438px;
+    height: 300px;
+    display: inline-flex;
+    margin-left: 10px;
+}
+
+.activator {
+    width: 90px;
+    height: 300px;
+}
+
+a, span {
+    color: red;
+    cursor: pointer;
+}
