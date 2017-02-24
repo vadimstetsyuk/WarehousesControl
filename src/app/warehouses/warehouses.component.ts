@@ -1,22 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Response } from '@angular/http';
 import { Warehouse } from './Warehouse';
 import { Product } from '../products/Product';
 
 import { WarehouseService } from './warehouse.service';
 import { ProductService } from '../products/product.service';
 
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
 
 @Component({
     moduleId: module.id,
     selector: 'warehouses-page',
     templateUrl: 'warehouses.component.html',
-    styleUrls: ['warehouses.component.css']
+    styleUrls: ['warehouses.component.css'],
+    providers: [WarehouseService]
 })
 
 export class WarehousesComponent implements OnInit {
-    warehouses: Warehouse[];
+    warehouses: Warehouse[] = [];
     products: Product[];
     amount: number;
 
@@ -24,36 +27,33 @@ export class WarehousesComponent implements OnInit {
         private productService: ProductService,
         private router: Router) { }
 
-    clickedWarehouse(warehouse) {
+    ngOnInit() {
+        this.getWarehousesData();
+        this.getProductsData();
+    }
+
+    clickedWarehouse(warehouse: Warehouse) {
+        console.log(this.router.url);
+        
         let link = [this.router.url + '/detail', warehouse.id];
         this.router.navigate(link);
     }
 
-    getWarehouseData() {
-        this.warehouseService.getWarehouses().then(warehouses => this.warehouses = warehouses);
-    }
-
-    getProductData() {
-        this.productService.getProducts().then(products => this.products = products);
-    }
-
-    defineAmountOfProductsForEachWarehouse() {
-        if (this.warehouses != null) {
-            this.warehouses.forEach(warehouse => {
-                warehouse.amountProducts = 0;
-                this.products.forEach(product => {
-                    if (product.parentId == warehouse.id) {
-                        warehouse.amountProducts++;
-                    }
-                });
+    getWarehousesData() {
+        this.warehouseService.getWarehouses()
+            .subscribe(
+            warehouses => this.warehouses = warehouses,
+            err => {
+                console.log(err);
             });
-        }
     }
 
-    ngOnInit() {
-        // Get initial data from productService to display on the page
-        this.getWarehouseData();
-        this.getProductData();
-        this.defineAmountOfProductsForEachWarehouse();
+    getProductsData() {
+        this.productService.getProducts()
+            .subscribe(
+            products => this.products = products,
+            err => {
+                console.log(err);
+            });
     }
 }

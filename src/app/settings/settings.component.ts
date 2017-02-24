@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { ModalDirective } from 'ng2-bootstrap/modal';
 
 @Component({
     moduleId: module.id,
@@ -7,9 +8,16 @@ import { Component } from '@angular/core';
 })
 
 export class SettingsComponent {
-    title: string;
+    @ViewChild('childModal') public childModal: ModalDirective;
 
     constructor() {
-        this.title = "The settings page";
+    }
+
+    public showChildModal(): void {
+        this.childModal.show();
+    }
+
+    public hideChildModal(): void {
+        this.childModal.hide();
     }
 }

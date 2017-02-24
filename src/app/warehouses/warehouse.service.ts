@@ -1,35 +1,26 @@
 import { Injectable } from '@angular/core';
-import { WAREHOUSES } from './warehouse-data';
-import { Warehouse } from './Warehouse'; 
-import { Observable, Subject } from 'rxjs';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { Warehouse } from './Warehouse';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class WarehouseService {
-    public warehouse;
-    public warehouse$:Subject<any>;
 
-    constructor() { 
-        this.warehouse = [];
-        this.warehouse$ = new Subject();
-    }
-    
-    // Returns an observable for the cart
-    subcribeCart() {
-        return Promise.resolve(this.warehouse$)
+    constructor(private http: Http) {
     }
 
-    // Returns an array of objects of the items in the cart
-    getCart() {
-        return Promise.resolve(this.warehouse);
+    getWarehouses(): Observable<Warehouse[]> {
+        return this.http.get('http://localhost:3000/api/warehouses')
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
-    getWarehouses() {
-        return Promise.resolve(WAREHOUSES)
+    getWarehouseById(id): Observable<Warehouse> {
+        return this.http.get('http://localhost:3000/api/warehouses/' + id)
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
-
-    getWarehouse(id) {
-        return this.getWarehouses()
-                    .then(warehouses => warehouses.find(warehouse => warehouse.id === id))
-    }
-
 }

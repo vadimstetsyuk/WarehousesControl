@@ -1,6 +1,6 @@
 <!-- With tabs panel -->
 <div class="navbar-fixed">
-    <nav *ngIf="isActiveTabs" class="nav-extended">
+    <nav [hidden]="!isActiveTabs" class="nav-extended">
         <div class="nav-wrapper">
             <a class="brand-logo"><i class="material-icons">cloud</i>Warehouses control</a>
             <ul class="right hide-on-med-and-down">
@@ -19,7 +19,7 @@
     </nav>
 
     <!-- Without tabs panel when user is not registered -->
-    <nav *ngIf="!isActiveTabs">
+    <nav [hidden]="isActiveTabs">
         <div class="nav-wrapper">
             <a class="brand-logo"><i class="material-icons">cloud</i>Warehouses control</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">

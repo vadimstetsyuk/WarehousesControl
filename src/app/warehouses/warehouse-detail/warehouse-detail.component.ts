@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -11,12 +11,15 @@ import { ProductService } from '../../products/product.service';
     moduleId: module.id,
     selector: 'warehouse-detail',
     templateUrl: 'warehouse-detail.component.html',
-    styleUrls: ['warehouse-detail.component.css']
+    styleUrls: ['warehouse-detail.component.css'],
+    providers: [ProductService]
 })
 
-export class WarehouseDetailComponent {
+export class WarehouseDetailComponent implements OnInit {
     selectedWarehouse: Warehouse;
     products: Product[];
+    chart: any;
+    options: Object;
 
     constructor(
         private warehouseService: WarehouseService,
@@ -24,32 +27,54 @@ export class WarehouseDetailComponent {
         private route: ActivatedRoute,
         private location: Location
     ) {
-        this.products = [];
+        this.options = {
+            chart: { type: 'spline' },
+            title: { text: 'Температура на складі' },
+            series: [{ data: [2, 3, 5, 8, 13] }]
+        };
+
+        setInterval(() => this.chart.series[0].addPoint(Math.random() * 10), 1000);
     }
 
-    // When initialized, fetch for the product info based on the product id and set it as selectedProduct
     ngOnInit() {
+        this.defineSelectedWarehouse();
+        this.getProductsDataById(this.getCurrentId());
+    }
+
+    getProductsDataById(id: number) {
+        this.productService.getProductsById(id)
+            .subscribe(
+            products => this.products = products,
+            err => {
+                console.log(err);
+            });
+    }
+
+    defineSelectedWarehouse() {
+        let id = this.getCurrentId();
+
+        this.warehouseService.getWarehouseById(id)
+            .subscribe(
+            warehouse => this.selectedWarehouse = warehouse,
+            err => {
+                console.log(err);
+            });
+    }
+
+    getCurrentId() : any {
+        let id;
         this.route.params.forEach(param => {
-            let id = parseInt(param['id'])
-            this.warehouseService.getWarehouse(id)
-                .then(product => this.selectedWarehouse = product)
+            id = parseInt(param['id'])
         });
 
-        this.getProductData();
-
-        if (this.products != null) {
-            this.products.forEach(product => {
-                if (product.parentId != this.selectedWarehouse.id)
-                    this.products.pop;
-            });
-        }
-    }
-
-    getProductData() {
-        this.productService.getProducts().then(products => this.products = products);
+        return id;
     }
 
     goBack() {
         this.location.back()
+    }
+
+    saveInstance(chartInstance) {
+        this.chart = chartInstance;
     }
 }

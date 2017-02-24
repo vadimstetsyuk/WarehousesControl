@@ -1,17 +1,17 @@
 <nav class="nav-extended">
     <div class="card" *ngFor="let warehouse of warehouses">
         <div class="card-image waves-effect waves-block waves-light ">
-            <img class="activator responsive-img" src="{{ warehouse.img }}" />
+            <img class="activator responsive-img" src="{{warehouse.img}}" />
         </div>
         <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">{{ warehouse.name }}<i class="material-icons right">more_vert</i></span>
             <p><a (click)="clickedWarehouse(warehouse)">Перейти до складу</a></p>
         </div>
         <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Поточна інформація:<i class="material-icons right">close</i></span>
-            <span>Вологість: {{ warehouse.humidity }}<br>
-            Температура: {{ warehouse.temperature }}<br>
-            Продуктів на складі: {{ warehouse.amountProducts }}</span>
+            <span class="card-title grey-text text-darken-4">Поточний стан:<i class="material-icons right">close</i></span>
+            <span>Вологість: {{ warehouse.humidity }}%<br>
+            Температура: {{ warehouse.temperature }} С*<br>
+            Продуктів на складі: {{ warehouse.amountProducts }} уп.</span>
         </div>
     </div>
 </nav>

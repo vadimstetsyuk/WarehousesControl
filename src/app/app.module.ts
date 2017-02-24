@@ -18,6 +18,9 @@ import { WarehouseService } from './warehouses/warehouse.service';
 import { ProductService } from './products/product.service';
 import { WarehouseDetailComponent } from './warehouses/warehouse-detail/warehouse-detail.component';
 
+import { ChartModule } from 'angular2-highcharts';
+import { ModalModule } from 'ng2-bootstrap';
+
 const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent, data: { title: 'Auth page' } },
   { path: 'home', component: HomeComponent, data: { title: 'Home page' } },
@@ -45,7 +48,9 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     MaterializeModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ChartModule.forRoot(require('highcharts')),
+    ModalModule.forRoot(),
   ],
   providers: [WarehouseService, ProductService],
   bootstrap: [AppComponent]

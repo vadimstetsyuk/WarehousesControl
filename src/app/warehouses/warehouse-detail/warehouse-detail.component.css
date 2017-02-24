@@ -1,3 +1,13 @@
 .card-detail {
     margin-top: -50px;
 }
+
+.table {
+    height: 160px;
+    overflow: scroll;
+}
+
+#chart {
+    height: 240px;
+    width: 100%;
+}

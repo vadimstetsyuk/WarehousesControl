@@ -2,34 +2,41 @@
     <div class="col s12 m7">
         <div class="card horizontal">
             <div class="card-image">
-                <img width="100" height="150" src={{selectedWarehouse.img}} />
+                <img width="100" height="140" src={{selectedWarehouse.img}} />
             </div>
             <div class="card-stacked">
                 <div class="card-content">
                     <button (click)="goBack()" class="btn btn- btn-danger">Back</button>
-                    <h4 class="header">{{selectedWarehouse.name}}</h4>
-                    <p>{{selectedWarehouse.info}}</p>
-                    <p>Amount: {{ selectedWarehouse.amountProducts }}</p>
+                    <h5 class="header">{{selectedWarehouse.name}}</h5>
+                    <p><b>Призначення:</b> {{selectedWarehouse.info}}</p>
+                    <p><b>Кількість продуктів на складі:</b> {{ selectedWarehouse.amountProducts }}</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <table class="highlight">
-        <thead>
-            <tr>
-                <th data-field="id">Id</th>
-                <th data-field="name">Name</th>
-                <th data-field="price">Price</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <tr *ngFor="let product of products">
-                <td>{{ product.id }}</td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.price }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table">
+        <table class=" highlight responsive-table">
+            <thead>
+                <tr>
+                    <th data-field="name">Назва продукту</th>
+                    <th data-field="date">Дата виготовлення</th>
+                    <th data-field="endDate">Придатний до</th>
+                    <th data-field="price">Ціна</th>
+                    <th data-field="place">Місце на складі</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products">
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.date }}</td>
+                        <td>{{ product.endDate }}</td>
+                        <td>{{ product.price }} $</td>
+                        <td>{{ product.numberPlace }}</td>
+                </tr> 
+            </tbody>
+        </table>
+    </div>
 </div>
+
+<chart id="chart" [options]="options" (load)="saveInstance($event.context)"></chart>

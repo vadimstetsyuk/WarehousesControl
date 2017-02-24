@@ -1,25 +1,29 @@
+import { Product } from './Product';
 import { Injectable } from '@angular/core';
-import { PRODUCTS } from './products-data';
-import { Product } from './Product'; 
-import { Observable, Subject } from 'rxjs';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class ProductService {
-    public product;
-    public product$:Subject<any>;
 
-    constructor() { 
-        this.product = [];
-        this.product$ = new Subject();
+    constructor(private http: Http) {
     }
 
-    getProducts() {
-        return Promise.resolve(PRODUCTS)
+    getProducts(): Observable<Product[]> {
+        return this.http.get('http://localhost:3000/api/products')
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
-    getProduct(id) {
-        return this.getProducts()
-                    .then(products => products.find(product => product.id === id))
+    getProductsById(id : number) : Observable<Product[]> {
+        var url = 'http://localhost:3000/api/products/' + id;
+        console.log(url);
+        
+        return this.http.get(url)
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
-
 }
