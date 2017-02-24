@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
+import { CurrentParameters } from '../../parameters/CurrentParameters';
 import { Warehouse } from '../Warehouse';
 import { WarehouseService } from '../warehouse.service';
 import { Product } from '../../products/Product';
@@ -16,6 +17,7 @@ import { ProductService } from '../../products/product.service';
 })
 
 export class WarehouseDetailComponent implements OnInit {
+    currentParameters: CurrentParameters;
     selectedWarehouse: Warehouse;
     products: Product[];
     chart: any;
@@ -30,15 +32,18 @@ export class WarehouseDetailComponent implements OnInit {
         this.options = {
             chart: { type: 'spline' },
             title: { text: 'Температура на складі' },
-            series: [{ data: [2, 3, 5, 8, 13] }]
+            series: [{ data: [2, 3, 5, 8, 13] }],
+            scrollbar: { enabled: false }
         };
 
-        setInterval(() => this.chart.series[0].addPoint(Math.random() * 10), 1000);
+        this.getCurrentParameters();
     }
 
     ngOnInit() {
         this.defineSelectedWarehouse();
         this.getProductsDataById(this.getCurrentId());
+
+        setInterval(() => this.chart.series[0].addPoint(this.getCurrentParameters().temperature), 1000);
     }
 
     getProductsDataById(id: number) {
@@ -48,6 +53,17 @@ export class WarehouseDetailComponent implements OnInit {
             err => {
                 console.log(err);
             });
+    }
+
+    getCurrentParameters(): CurrentParameters {
+        this.productService.getCurrentParameters(this.getCurrentId())
+            .subscribe(
+            parameters => this.currentParameters = parameters,
+            err => {
+                console.log(err);
+            });
+
+        return this.currentParameters;
     }
 
     defineSelectedWarehouse() {
@@ -61,7 +77,7 @@ export class WarehouseDetailComponent implements OnInit {
             });
     }
 
-    getCurrentId() : any {
+    getCurrentId(): any {
         let id;
         this.route.params.forEach(param => {
             id = parseInt(param['id'])
@@ -77,4 +93,5 @@ export class WarehouseDetailComponent implements OnInit {
     saveInstance(chartInstance) {
         this.chart = chartInstance;
     }
+
 }

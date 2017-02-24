@@ -20,8 +20,7 @@ import 'rxjs/add/observable/throw';
 
 export class WarehousesComponent implements OnInit {
     warehouses: Warehouse[] = [];
-    products: Product[];
-    amount: number;
+    products: Product[] = [];
 
     constructor(private warehouseService: WarehouseService,
         private productService: ProductService,
@@ -30,11 +29,14 @@ export class WarehousesComponent implements OnInit {
     ngOnInit() {
         this.getWarehousesData();
         this.getProductsData();
+        if(this.warehouses) {
+            this.setAmountProductsForEachWarehouse();
+        }
     }
 
     clickedWarehouse(warehouse: Warehouse) {
         console.log(this.router.url);
-        
+
         let link = [this.router.url + '/detail', warehouse.id];
         this.router.navigate(link);
     }
@@ -55,5 +57,19 @@ export class WarehousesComponent implements OnInit {
             err => {
                 console.log(err);
             });
+    }
+
+    setAmountProductsForEachWarehouse() {
+        for (var i = 1; i <= this.warehouses.length; i++) {
+            let temp: Product[] = [];
+
+            this.productService.getProductsById(i)
+                .subscribe(
+                amountProducts => temp = amountProducts,
+                err => {
+                    console.log(err);
+                });
+            this.warehouses[i - 1].amountProducts = temp.length;
+        }        
     }
 }

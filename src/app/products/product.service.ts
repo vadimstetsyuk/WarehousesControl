@@ -1,4 +1,5 @@
 import { Product } from './Product';
+import { CurrentParameters } from '../parameters/CurrentParameters';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -18,10 +19,19 @@ export class ProductService {
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
-    getProductsById(id : number) : Observable<Product[]> {
+    getProductsById(id: number): Observable<Product[]> {
         var url = 'http://localhost:3000/api/products/' + id;
         console.log(url);
-        
+
+        return this.http.get(url)
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }
+
+    getCurrentParameters(id: number): Observable<CurrentParameters> {
+        var url = 'http://localhost:3000/api/generator/getCurrentParameters/' + id;
+        console.log(url);
+
         return this.http.get(url)
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));

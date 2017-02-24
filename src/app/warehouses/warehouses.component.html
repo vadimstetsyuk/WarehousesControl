@@ -7,7 +7,7 @@
             <span class="card-title activator grey-text text-darken-4">{{ warehouse.name }}<i class="material-icons right">more_vert</i></span>
             <p><a (click)="clickedWarehouse(warehouse)">Перейти до складу</a></p>
         </div>
-        <div class="card-reveal">
+        <div class="card-reveal" (click)="setAmountProductsForEachWarehouse()">
             <span class="card-title grey-text text-darken-4">Поточний стан:<i class="material-icons right">close</i></span>
             <span>Вологість: {{ warehouse.humidity }}%<br>
             Температура: {{ warehouse.temperature }} С*<br>

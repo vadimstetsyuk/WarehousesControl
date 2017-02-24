@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      // setTimeout(() => this._router.navigate(["/auth"]));
+
   }
 
   public showTabs(): boolean {
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
                 result = false;
                 break;
     }
-    console.log(this._router.url);
+    // console.log(this._router.url);
     
     return result;
   }
