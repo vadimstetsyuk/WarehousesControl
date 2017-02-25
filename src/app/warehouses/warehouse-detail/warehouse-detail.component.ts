@@ -17,6 +17,7 @@ import { ProductService } from '../../products/product.service';
 })
 
 export class WarehouseDetailComponent implements OnInit {
+    checked: boolean;
     currentParameters: CurrentParameters;
     selectedWarehouse: Warehouse;
     products: Product[];
@@ -31,10 +32,12 @@ export class WarehouseDetailComponent implements OnInit {
     ) {
         this.options = {
             chart: { type: 'spline' },
-            title: { text: 'Температура на складі' },
+            title: { text: '' },
             series: [{ data: [2, 3, 5, 8, 13] }],
-            scrollbar: { enabled: false }
+            scrollbar: { enabled: true }
         };
+
+        this.checked = false;
 
         this.getCurrentParameters();
     }
@@ -94,4 +97,7 @@ export class WarehouseDetailComponent implements OnInit {
         this.chart = chartInstance;
     }
 
+    toggleRoleActive() {
+        this.checked = !this.checked;
+    }
 }

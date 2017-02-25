@@ -2,12 +2,7 @@
     margin-top: -50px;
 }
 
-.table {
-    height: 160px;
-    overflow: scroll;
-}
-
 #chart {
-    height: 240px;
+    height: 263px;
     width: 100%;
 }
