@@ -7,11 +7,11 @@ export class Warehouse {
 
     amountProducts: number;
 
-    humidity: number;
     temperature: number;
+    humidity: number;
 
-    minHumidity: number;
-    maxHumidity: number;
     minTemperature: number;
     maxTemperature: number;
+    minHumidity: number;
+    maxHumidity: number;
 }
