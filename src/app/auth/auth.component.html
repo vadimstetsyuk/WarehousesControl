@@ -5,16 +5,16 @@
   <form id="login-form">
     <div class="form-group">
       <div class='input-field col s12'>
-        <input class='validate' type='email' name='email' id='email' value="root@root.com" />
+        <input class='validate' type='email' name='email' id='email' value="root@root.com" #email/>
         <label for='email'>Enter email</label>
       </div>
     </div>
     <div class="form-group">
       <div class='input-field col s12'>
-        <input class='validate' type='password' name='password' id='password' value="1111" />
+        <input class='validate' type='password' name='password' id='password' value="1111" #password />
         <label for='password'>Enter password</label>
       </div>
     </div>
-    <input type="submit" name='btn_login' (click)="checkForm()" class='btn btn-large waves-effect indigo' value="Sign in" />
+    <input type="submit" name='btn_login' (click)="checkForm(email, password)" class='btn btn-large waves-effect indigo' value="Sign in" />
   </form>
 </div>

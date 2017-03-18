@@ -13,10 +13,11 @@ import { ReportsComponent } from './reports/reports.component';
 import { SettingsComponent } from './settings/settings.component';
 import { WarehousesComponent } from './warehouses/warehouses.component';
 import { ErrorsComponent } from './errors-page/errors-page.component';
+import { WarehouseDetailComponent } from './warehouses/warehouse-detail/warehouse-detail.component';
 
 import { WarehouseService } from './warehouses/warehouse.service';
 import { ProductService } from './products/product.service';
-import { WarehouseDetailComponent } from './warehouses/warehouse-detail/warehouse-detail.component';
+import { UserService } from './auth/auth.service';
 
 import { ChartModule } from 'angular2-highcharts';
 import { ModalModule } from 'ng2-bootstrap';
@@ -52,7 +53,7 @@ const appRoutes: Routes = [
     ChartModule.forRoot(require('highcharts')),
     ModalModule.forRoot(),
   ],
-  providers: [WarehouseService, ProductService],
+  providers: [WarehouseService, ProductService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

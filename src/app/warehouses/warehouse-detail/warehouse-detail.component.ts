@@ -17,12 +17,16 @@ import { ProductService } from '../../products/product.service';
 })
 
 export class WarehouseDetailComponent implements OnInit {
-    checked: boolean;
     currentParameters: CurrentParameters;
     selectedWarehouse: Warehouse;
     products: Product[];
-    chart: any;
-    options: Object;
+    amountProducts: number;
+
+    chartTemperature: any;
+    chartHumidity: any;
+    optionsTemperature: Object;
+    optionsHumidity: Object;
+
 
     constructor(
         private warehouseService: WarehouseService,
@@ -30,14 +34,19 @@ export class WarehouseDetailComponent implements OnInit {
         private route: ActivatedRoute,
         private location: Location
     ) {
-        this.options = {
+        this.optionsTemperature = {
             chart: { type: 'spline' },
             title: { text: '' },
-            series: [{ data: [2, 3, 5, 8, 13] }],
+            series: [{ data: [] }],
             scrollbar: { enabled: true }
         };
 
-        this.checked = false;
+        this.optionsHumidity = {
+            chart: { type: 'spline' },
+            title: { text: '' },
+            series: [{ data: [] }],
+            scrollbar: { enabled: true }
+        };
 
         this.getCurrentParameters();
     }
@@ -46,7 +55,8 @@ export class WarehouseDetailComponent implements OnInit {
         this.defineSelectedWarehouse();
         this.getProductsDataById(this.getCurrentId());
 
-        setInterval(() => this.chart.series[0].addPoint(this.getCurrentParameters().temperature), 1000);
+        setInterval(() => this.chartTemperature.series[0].addPoint(this.getCurrentParameters().temperature), 1000);
+        setInterval(() => this.chartHumidity.series[0].addPoint(this.getCurrentParameters().humidity), 1000);
     }
 
     getProductsDataById(id: number) {
@@ -59,6 +69,9 @@ export class WarehouseDetailComponent implements OnInit {
     }
 
     getCurrentParameters(): CurrentParameters {
+        if(this.products)
+            this.amountProducts = this.products.length;
+
         this.productService.getCurrentParameters(this.getCurrentId())
             .subscribe(
             parameters => this.currentParameters = parameters,
@@ -83,21 +96,22 @@ export class WarehouseDetailComponent implements OnInit {
     getCurrentId(): any {
         let id;
         this.route.params.forEach(param => {
-            id = parseInt(param['id'])
+            id = parseInt(param['id']);
         });
 
         return id;
     }
 
     goBack() {
-        this.location.back()
+        // this.location.back();
+        window.location.href = '/home/warehouses';
     }
 
-    saveInstance(chartInstance) {
-        this.chart = chartInstance;
+    saveInstanceTemperature(chartInstance) {
+        this.chartTemperature = chartInstance;
     }
 
-    toggleRoleActive() {
-        this.checked = !this.checked;
+    saveInstanceHumidity(chartInstance) {
+        this.chartHumidity = chartInstance;
     }
 }

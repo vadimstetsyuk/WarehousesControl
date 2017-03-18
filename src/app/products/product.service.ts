@@ -29,7 +29,7 @@ export class ProductService {
     }
 
     getCurrentParameters(id: number): Observable<CurrentParameters> {
-        var url = 'http://localhost:3000/api/generator/getCurrentParameters/' + id;
+        var url = 'http://localhost:3000/api/parameters/' + id;
         console.log(url);
 
         return this.http.get(url)

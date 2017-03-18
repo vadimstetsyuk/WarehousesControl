@@ -10,7 +10,7 @@
                         <button (click)="goBack()" class="btn btn- btn-danger">Back</button>
                         <h5 class="header">{{selectedWarehouse.name}}</h5>
                         <p><b>Призначення:</b> {{selectedWarehouse.info}}</p>
-                        <p><b>Кількість продуктів на складі:</b> {{ selectedWarehouse.amountProducts }}</p>
+                        <p><b>Кількість продуктів на складі:</b>{{ amountProducts }}</p>
                     </div>
                 </div>
             </div>
@@ -21,14 +21,7 @@
         <div class="col s6 m3">
             <div class="card horizontal">
                 <div class="card-content white-text">
-                    <p>
-                        <input type="checkbox" id="test5" [(checked)]="checked" (click)="toggleRoleActive()"/>
-                        <label for="test5">Список продуктів</label>
-                    </p>
-                    <p>
-                        <input type="checkbox" id="test6" [(checked)]="!checked" (click)="toggleRoleActive()"/>
-                        <label for="test6">Поточні параметри</label>
-                    </p>
+
 
                 </div>
                 <div class="card-action">
@@ -47,7 +40,8 @@
             </div>
 
             <div class="card-image waves-effect waves-block waves-light">
-                <chart id="chart" [options]="options" (load)="saveInstance($event.context)"></chart>
+                <chart class="chart" [options]="optionsTemperature" (load)="saveInstanceTemperature($event.context)"></chart>
+                <chart class="chart" [options]="optionsHumidity" (load)="saveInstanceHumidity($event.context)"></chart>
             </div>
 
             <div class="card-reveal">
@@ -55,6 +49,7 @@
                 <table class=" highlight responsive-table">
                     <thead>
                         <tr>
+                            <th data-field="id">ID</th>
                             <th data-field="name">Назва продукту</th>
                             <th data-field="date">Дата виготовлення</th>
                             <th data-field="endDate">Придатний до</th>
@@ -64,6 +59,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let product of products">
+                            <td>{{ product.id }}</td>
                             <td>{{ product.name }}</td>
                             <td>{{ product.date }}</td>
                             <td>{{ product.endDate }}</td>
