@@ -20,7 +20,8 @@ import { ProductService } from './products/product.service';
 import { UserService } from './auth/auth.service';
 
 import { ChartModule } from 'angular2-highcharts';
-import { ModalModule } from 'ng2-bootstrap';
+
+import { PopupModule } from 'ng2-opd-popup';
 
 const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent, data: { title: 'Auth page' } },
@@ -51,7 +52,7 @@ const appRoutes: Routes = [
     MaterializeModule,
     RouterModule.forRoot(appRoutes),
     ChartModule.forRoot(require('highcharts')),
-    ModalModule.forRoot(),
+    PopupModule.forRoot()
   ],
   providers: [WarehouseService, ProductService, UserService],
   bootstrap: [AppComponent]

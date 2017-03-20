@@ -1,17 +1,126 @@
-<button type="button" class="btn btn-primary" (click)="showChildModal()">Open child modal</button>
+<div class="card-detail">
+  <div class="col s12 m7">
+    <div class="card horizontal">
+      <div class="card-image">
 
-<div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pull-left">Child modal</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
-      <div class="modal-body">
-        I am a child modal, opened from parent component!
+      <div class="card-stacked">
+        <div class="card-content">
+          <a class="waves-effect waves-light btn" (click)="showPopupAddUser()"><i class="material-icons left">add</i>Додати користувача</a>
+          <a class="waves-effect waves-light btn" (click)="showPopupEditUser()"><i class="material-icons left">mode_edit</i>Редагувати користувача</a>
+          <a class="waves-effect waves-light btn" (click)="showPopupDeleteUser()"><i class="material-icons left">delete</i>Видалити користувача</a>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<popup #popupAddUser (confirmClick)="login()">
+  <form class="form-horizontal">
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">perm_identity</i>
+        <input id="firstname" type="text" class="validate" name="firstname" />
+        <label for="firstname">Ім'я: </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">perm_contact_calendar</i>
+        <input id="lastname" type="text" class="validate" name="lastname" />
+        <label for="lastname">Прізвище: </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">account_circle</i>
+        <input id="username" type="text" class="validate" name="username" />
+        <label for="username">Логін: </label>
+      </div>
+    </div>
+
+    <!--<div class="row">
+      <div class="input-field col s12">
+        <input id="email" type="email" class="validate" name="email" [(ngModel)]="email" />
+        <label for="email">Роль: </label>
+      </div>
+    </div>-->
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">email</i>
+        <input id="email" type="email" class="validate" name="email" />
+        <label for="email">Email</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">vpn_key</i>
+        <input id="password" type="password" class="validate" name="password" />
+        <label for="password">Password</label>
+      </div>
+    </div>
+  </form>
+</popup>
+
+<popup #popupEditUser (confirmClick)="login()">
+  <form class="form-horizontal">
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">perm_identity</i>
+        <input id="firstname" type="text" class="validate" name="firstname" />
+        <label for="firstname">Ім'я: </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">perm_contact_calendar</i>
+        <input id="lastname" type="text" class="validate" name="lastname" />
+        <label for="lastname">Прізвище: </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">account_circle</i>
+        <input id="username" type="text" class="validate" name="username" />
+        <label for="username">Логін: </label>
+      </div>
+    </div>
+
+    <!--<div class="row">
+      <div class="input-field col s12">
+        <input id="email" type="email" class="validate" name="email" [(ngModel)]="email" />
+        <label for="email">Роль: </label>
+      </div>
+    </div>-->
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">email</i>
+        <input id="email" type="email" class="validate" name="email" />
+        <label for="email">Email</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">vpn_key</i>
+        <input id="password" type="password" class="validate" name="password" />
+        <label for="password">Password</label>
+      </div>
+    </div>
+  </form>
+</popup>
+
+<popup #popupDeleteUser (confirmClick)="login()">
+  <form class="form-horizontal">
+    <select>
+      <option *ngFor="let user of users"></option>
+    </select>
+  </form>
+</popup>
