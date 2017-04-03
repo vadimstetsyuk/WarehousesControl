@@ -6,6 +6,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
+import { SERVER_NAME } from '../shared/SERVER_CONST';
+
 @Injectable()
 export class WarehouseService {
 
@@ -13,13 +15,13 @@ export class WarehouseService {
     }
 
     getWarehouses(): Observable<Warehouse[]> {
-        return this.http.get('http://localhost:3000/api/warehouses')
+        return this.http.get(SERVER_NAME + 'warehouses')
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
     getWarehouseById(id): Observable<Warehouse> {
-        return this.http.get('http://localhost:3000/api/warehouses/' + id)
+        return this.http.get(SERVER_NAME + 'warehouses/' + id)
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }

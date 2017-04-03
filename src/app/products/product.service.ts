@@ -7,6 +7,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
+import { SERVER_NAME } from '../shared/SERVER_CONST';
+
 @Injectable()
 export class ProductService {
 
@@ -14,13 +16,13 @@ export class ProductService {
     }
 
     getProducts(): Observable<Product[]> {
-        return this.http.get('http://localhost:3000/api/products')
+        return this.http.get(SERVER_NAME + 'products')
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
     getProductsById(id: number): Observable<Product[]> {
-        var url = 'http://localhost:3000/api/products/' + id;
+        var url = SERVER_NAME + 'products/' + id;
         console.log(url);
 
         return this.http.get(url)
@@ -29,7 +31,7 @@ export class ProductService {
     }
 
     getCurrentParameters(id: number): Observable<CurrentParameters> {
-        var url = 'http://localhost:3000/api/parameters/' + id;
+        var url = SERVER_NAME + 'parameters/' + id;
         console.log(url);
 
         return this.http.get(url)
