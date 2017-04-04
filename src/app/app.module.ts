@@ -20,7 +20,6 @@ import { ProductService } from './products/product.service';
 import { UserService } from './auth/auth.service';
 
 import { ChartModule } from 'angular2-highcharts';
-
 import { PopupModule } from 'ng2-opd-popup';
 
 const appRoutes: Routes = [
@@ -54,6 +53,7 @@ const appRoutes: Routes = [
     ChartModule.forRoot(require('highcharts')),
     PopupModule.forRoot()
   ],
+  entryComponents: [WarehouseDetailComponent],
   providers: [WarehouseService, ProductService, UserService],
   bootstrap: [AppComponent]
 })

@@ -41,12 +41,15 @@
       </div>
     </div>
 
-    <!--<div class="row">
+    <div class="row">
       <div class="input-field col s12">
-        <input id="email" type="email" class="validate" name="email" [(ngModel)]="email" />
-        <label for="email">Роль: </label>
+        <label>Роль: </label>
+        <input class="with-gap" name="role" type="radio" id="admin"  />
+        <label for="admin">Адміністратор</label>
+         <input class="with-gap" name="role" type="radio" id="user" checked/>
+        <label for="user">Користувач</label>
       </div>
-    </div>-->
+    </div>
 
     <div class="row">
       <div class="input-field col s12">
@@ -119,8 +122,10 @@
 
 <popup #popupDeleteUser (confirmClick)="login()">
   <form class="form-horizontal">
-    <select>
-      <option *ngFor="let user of users"></option>
-    </select>
+    <table>
+      <tr *ngFor="let user of users">
+        <td>{{ user.username }}</td>
+      </tr>
+    </table>
   </form>
 </popup>
