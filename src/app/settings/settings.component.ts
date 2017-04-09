@@ -15,6 +15,7 @@ import 'rxjs/add/observable/throw';
     styleUrls: ['settings.component.css'],
 })
 
+
 export class SettingsComponent implements OnInit, OnChanges {
     currentUser: User;
     users: User[];
@@ -35,6 +36,15 @@ export class SettingsComponent implements OnInit, OnChanges {
 
     ngOnChanges() {
         this.getUsers();
+    }
+
+    selectUser(user: string) {
+        // set current lang;
+        this.users.forEach(item => {
+            if (item.username === user) {
+                this.currentUser = item;
+            }
+        });
     }
 
     getUsers() {
@@ -127,5 +137,18 @@ export class SettingsComponent implements OnInit, OnChanges {
         console.log(this.currentUser);
         this.userService.editUser(this.currentUser)
             .subscribe((data) => { this.currentUser = data; });
+    }
+
+    rowClicked(id: any) {
+        console.log(id);
+        this.users.forEach(element => {
+            if(element.id === id) {
+                this.currentUser = element;
+            }
+        });
+    }
+
+    defineStyle(id: Number) {
+        return this.currentUser.id === id;
     }
 }

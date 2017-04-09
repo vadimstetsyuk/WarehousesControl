@@ -7,7 +7,7 @@
       <div class="card-stacked">
         <div class="card-content">
           <a class="waves-effect waves-light btn" (click)="showPopupAddUser()"><i class="material-icons left">add</i>{{ 'BUTTON.ADD_USER' | translate }}</a>
-          <a class="waves-effect waves-light btn" (click)="showPopupEditUser()"><i class="material-icons left">mode_edit</i>{{ 'BUTTON.EDIT_USER' | translate }}</a>
+          <a class="waves-effect waves-light btn" [ngClass]="{ disabled: !currentUser.id }" (click)="showPopupEditUser()"><i class="material-icons left">mode_edit</i>{{ 'BUTTON.EDIT_USER' | translate }}</a>
           <a class="waves-effect waves-light btn" (click)="showPopupDeleteUser()"><i class="material-icons left">delete</i>{{ 'BUTTON.DELETE_USER' | translate }}</a>
         </div>
       </div>
@@ -20,8 +20,69 @@
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">perm_identity</i>
-        <input id="firstName" type="text" class="validate" name="firstName" [(ngModel)]="currentUser.firstName" />
+        <input id="firstName" type="text" class="validate" name="firstName" />
         <label for="firstName">{{ 'LABEL.FIRST_NAME' | translate }}: </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">perm_contact_calendar</i>
+        <input id="lastname" type="text" class="validate" name="lastname" />
+        <label for="lastname">{{ 'LABEL.LAST_NAME' | translate }}: </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">account_circle</i>
+        <input id="username" type="text" class="validate" name="username" />
+        <label for="username">{{ 'LABEL.LOGIN' | translate }}: </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input class="with-gap" name="role" type="radio" id="admin" />
+        <label for="admin">Адміністратор</label>
+        <input class="with-gap" name="role" type="radio" id="user" checked/>
+        <label for="user">Користувач</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">email</i>
+        <input id="email" type="email" class="validate" name="email" />
+        <label for="email">{{ 'LABEL.EMAIL' | translate }}</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">vpn_key</i>
+        <input id="password" type="password" class="validate" name="password" />
+        <label for="password">{{ 'LABEL.PASSWORD' | translate }}</label>
+      </div>
+    </div>
+  </form>
+</popup>
+
+<popup #popupEditUser (confirmClick)="editUser()">
+  <form class="form-horizontal">
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">perm_identity</i>
+        <input id="id" type="text" class="validate" name="id" [(ngModel)]="currentUser.Id" disabled/>
+        <label for="id">Id: </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">perm_identity</i>
+        <input id="firstname" type="text" class="validate" name="firstname" [(ngModel)]="currentUser.firstName" />
+        <label for="firstname">{{ 'LABEL.FIRST_NAME' | translate }}: </label>
       </div>
     </div>
 
@@ -43,16 +104,6 @@
 
     <div class="row">
       <div class="input-field col s12">
-        <label>{{ 'LABEL.ROLE' | translate }}: </label>
-        <input class="with-gap" name="role" type="radio" id="admin" />
-        <label for="admin">Адміністратор</label>
-        <input class="with-gap" name="role" type="radio" id="user" checked/>
-        <label for="user">Користувач</label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="input-field col s12">
         <i class="material-icons prefix">email</i>
         <input id="email" type="email" class="validate" name="email" [(ngModel)]="currentUser.email" />
         <label for="email">{{ 'LABEL.EMAIL' | translate }}</label>
@@ -69,64 +120,22 @@
   </form>
 </popup>
 
-<popup #popupEditUser (confirmClick)="editUser()">
-  <form class="form-horizontal">
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">perm_identity</i>
-        <input id="id" type="text" class="validate" name="id" [(ngModel)]="currentUser.Id"  />
-        <label for="id">Id: </label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">perm_identity</i>
-        <input id="firstname" type="text" class="validate" name="firstname" [(ngModel)]="currentUser.firstName"  />
-        <label for="firstname">{{ 'LABEL.FIRST_NAME' | translate }}: </label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">perm_contact_calendar</i>
-        <input id="lastname" type="text" class="validate" name="lastname" [(ngModel)]="currentUser.lastName"  />
-        <label for="lastname">{{ 'LABEL.LAST_NAME' | translate }}: </label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">account_circle</i>
-        <input id="username" type="text" class="validate" name="username" [(ngModel)]="currentUser.username"  />
-        <label for="username">{{ 'LABEL.LOGIN' | translate }}: </label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">email</i>
-        <input id="email" type="email" class="validate" name="email" [(ngModel)]="currentUser.email"  />
-        <label for="email">{{ 'LABEL.EMAIL' | translate }}</label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">vpn_key</i>
-        <input id="password" type="password" class="validate" name="password" [(ngModel)]="currentUser.password"  />
-        <label for="password">{{ 'LABEL.PASSWORD' | translate }}</label>
-      </div>
-    </div>
-  </form>
-</popup>
-
 <popup #popupDeleteUser (confirmClick)="login()">
   <form class="form-horizontal">
     <table>
-      <tr *ngFor="let user of users">
-        <td>{{ user.username }}</td>
-      </tr>
+      <div class="row">
+        <span>Вибрати користувача: </span>
+        <div class="btn-group" dropdown [dropup]="true">
+          <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+    {{ currentUser.username }} <span class="caret"></span>
+  </button>
+          <ul *dropdownMenu class="dropdown-menu" role="menu">
+            <li role="menuitem" *ngFor="let user of users" (click)="selectUser(user.username)">
+              <a class="dropdown-item">{{ user.username }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </table>
   </form>
 </popup>
@@ -145,7 +154,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of users">
+    <tr *ngFor="let user of users" (click)="rowClicked(user.id)" [ngClass]="{ light: defineStyle(user.id) }" >
       <td>{{ user.id }}</td>
       <td>{{ user.firstName }}</td>
       <td>{{ user.lastName }}</td>
