@@ -1,0 +1,16 @@
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="right btn-group" dropdown [dropup]="true">
+                <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+    {{ currentLang }} <span class="caret"></span>
+  </button>
+                <ul *dropdownMenu class="dropdown-menu" role="menu">
+                    <li role="menuitem" *ngFor="let lang of supportedLanguages" (click)="selectLang(lang.value)">
+                        <a class="dropdown-item">{{ lang.display }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, OnChanges } from '@angular/core';
 
+import { TranslateService } from '../translate';
+
 @Component({
     moduleId: module.id,
     selector: 'top-menu',
