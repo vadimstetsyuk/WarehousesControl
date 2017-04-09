@@ -7,10 +7,10 @@
                 </div>
                 <div class="card-stacked">
                     <div class="card-content">
-                        <button (click)="goBack()" class="btn btn- btn-danger">Back</button>
+                        <button (click)="goBack()" class="btn btn- btn-danger">{{ 'BUTTON.BACK' | translate }}</button>
                         <h5 class="header">{{selectedWarehouse.name}}</h5>
-                        <p><b>Призначення:</b> {{selectedWarehouse.info}}</p>
-                        <p><b>Кількість продуктів на складі:</b>{{ amountProducts }}</p>
+                        <p><b>{{ 'LABEL.APPOINTMENT' | translate }}:</b> {{selectedWarehouse.info}}</p>
+                        <p><b>{{ 'numberProductsOnTheWarehouse' | translate }}:</b>{{ amountProducts }}</p>
                     </div>
                 </div>
             </div>
@@ -32,11 +32,11 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" style="z-index: 2">
     <div class="col s12 m12">
         <div class="card">
             <div class="card-content">
-                <span class="card-title activator waves-effect waves-light btn-large red">Переглянути продукти на складі<i class="material-icons"></i></span>
+                <span class="card-title activator waves-effect waves-light btn-large red">{{ 'BUTTON.VIEW_PRODUCTS_ON_THE_WAREHOUSE' | translate }}<i class="material-icons"></i></span>
             </div>
 
             <div class="card-image waves-effect waves-block waves-light">
@@ -45,16 +45,16 @@
             </div>
 
             <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Продукти на складі<i class="material-icons right">close</i></span>
+                <span class="card-title grey-text text-darken-4">{{ 'LABEL.PRODUCTS_ON_THE_WAREHOUSE' | translate }}<i class="material-icons right">close</i></span>
                 <table class=" highlight responsive-table">
                     <thead>
                         <tr>
                             <th data-field="id">ID</th>
-                            <th data-field="name">Назва продукту</th>
-                            <th data-field="date">Дата виготовлення</th>
-                            <th data-field="endDate">Придатний до</th>
-                            <th data-field="price">Ціна</th>
-                            <th data-field="place">Місце на складі</th>
+                            <th data-field="name">{{ 'LABEL.NAME_OF_PRODUCT' | translate }}</th>
+                            <th data-field="date">{{ 'LABEL.DATE_OF_MANUFACTURE' | translate }}</th>
+                            <th data-field="endDate">{{ 'LABEL.SUITABLE_FOR' | translate }}</th>
+                            <th data-field="price">{{ 'LABEL.PRICE' | translate }}</th>
+                            <th data-field="place">{{ 'LABEL.PLACE_ON_THE_WAREHOUSE' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>

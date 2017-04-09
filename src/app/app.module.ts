@@ -8,7 +8,8 @@ import { MaterializeModule } from "angular2-materialize";
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './home/home.component';
-import { TopMenuComponent } from './shared/top-menu.component';
+import { TopMenuComponent } from './shared/header/top-menu.component';
+import { FooterComponent } from './shared/footer/footer.component';
 import { ReportsComponent } from './reports/reports.component';
 import { SettingsComponent } from './settings/settings.component';
 import { WarehousesComponent } from './warehouses/warehouses.component';
@@ -21,6 +22,10 @@ import { UserService } from './auth/auth.service';
 
 import { ChartModule } from 'angular2-highcharts';
 import { PopupModule } from 'ng2-opd-popup';
+
+import { TRANSLATION_PROVIDERS, TranslatePipe, TranslateService }   from './shared/translate';
+
+import { BsDropdownModule } from 'ngx-bootstrap';
 
 const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent, data: { title: 'Auth page' } },
@@ -38,11 +43,13 @@ const appRoutes: Routes = [
     AuthComponent,
     HomeComponent,
     TopMenuComponent,
+    FooterComponent,
     ReportsComponent,
     SettingsComponent,
     WarehousesComponent,
     ErrorsComponent,
-    WarehouseDetailComponent
+    WarehouseDetailComponent,
+    TranslatePipe
   ],
   imports: [
     BrowserModule,
@@ -51,10 +58,13 @@ const appRoutes: Routes = [
     MaterializeModule,
     RouterModule.forRoot(appRoutes),
     ChartModule.forRoot(require('highcharts')),
-    PopupModule.forRoot()
+    PopupModule.forRoot(),
+    BsDropdownModule.forRoot()
+    
   ],
   entryComponents: [WarehouseDetailComponent],
-  providers: [WarehouseService, ProductService, UserService],
+  providers: [WarehouseService, ProductService, UserService,
+              TRANSLATION_PROVIDERS, TranslateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { TranslateService } from '../shared/translate';
+
 @Component({
     moduleId: module.id,
     selector: 'errors-page',
@@ -7,9 +9,7 @@ import { Component } from '@angular/core';
 })
 
 export class ErrorsComponent {
-    title: string;
 
     constructor() {
-        this.title = "The errors page";
     }
 }

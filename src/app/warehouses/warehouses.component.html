@@ -5,13 +5,13 @@
         </div>
         <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">{{ warehouse.name }}<i class="material-icons right">more_vert</i></span>
-            <p><a (click)="clickedWarehouse(warehouse)">Перейти до складу</a></p>
+            <p><a (click)="clickedWarehouse(warehouse)">{{ 'goToWarehouse' | translate }}</a></p>
         </div>
         <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Поточний стан:<i class="material-icons right">close</i></span>
-            <span>Вологість: {{ warehouse.humidity }}%<br>
-            Температура: {{ warehouse.temperature }} С*<br>
-            Продуктів на складі: {{ warehouse.amountProducts }} уп.</span>
+            <span class="card-title grey-text text-darken-4">{{ 'currentState' | translate }}:<i class="material-icons right">close</i></span>
+            <span>{{ 'humidity' | translate }}: {{ warehouse.humidity }}%<br>
+            {{ 'temperature' | translate }}: {{ warehouse.temperature }} С*<br>
+            {{ 'numberProductsOnTheWarehouse' | translate }}: {{ warehouse.amountProducts }} уп.</span>
         </div>
     </div>
-</nav>
+</nav>  

@@ -6,15 +6,15 @@
     <div class="form-group">
       <div class='input-field col s12'>
         <input class='validate' type='email' name='email' id='email' value="root@root.com" #email/>
-        <label for='email'>Enter email</label>
+        <label for='email'>{{ 'LABEL.ENTER_EMAIL' | translate }}</label>
       </div>
     </div>
     <div class="form-group">
       <div class='input-field col s12'>
         <input class='validate' type='password' name='password' id='password' value="1111" #password />
-        <label for='password'>Enter password</label>
+        <label for='password'>{{ 'LABEL.ENTER_PASSWORD' | translate }}</label>
       </div>
     </div>
-    <input type="submit" name='btn_login' (click)="checkForm(email, password)" class='btn btn-large waves-effect indigo' value="Sign in" />
+    <input type="submit" name='btn_login' (click)="checkForm(email, password)" class='btn btn-large waves-effect indigo' value="{{ 'BUTTON.SIGN_IN' | translate }}" />
   </form>
 </div>

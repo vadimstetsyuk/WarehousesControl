@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { TranslateService } from '../shared/translate';
+
 @Component({
     moduleId: module.id,
     selector: 'auth',

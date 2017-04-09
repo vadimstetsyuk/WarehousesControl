@@ -3,6 +3,8 @@ import { Popup } from 'ng2-opd-popup';
 import { User } from '../auth/User';
 import { UserService } from '../auth/auth.service';
 
+import { TranslateService } from '../shared/translate';
+
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
@@ -17,22 +19,19 @@ export class SettingsComponent implements OnInit, OnChanges {
     currentUser: User;
     users: User[];
 
-    private gridOptions: GridOptions;
-
-
     @ViewChild('popupAddUser') popupAddUser: Popup;
     @ViewChild('popupEditUser') popupEditUser: Popup;
     @ViewChild('popupDeleteUser') popupDeleteUser: Popup;
 
     constructor(private popup: Popup, private userService: UserService) {
         this.users = [new User()];
-
-        this.currentUser = <User>{};
+        this.currentUser = <User>{ id: 0, firstName: '', lastName: '', username: '', email: '', password: '', role: '', dateRegister: '' };
     }
 
     ngOnInit() {
         this.getUsers();
     }
+
 
     ngOnChanges() {
         this.getUsers();
@@ -111,5 +110,22 @@ export class SettingsComponent implements OnInit, OnChanges {
 
     hidePopup() {
         this.popup.hide();
+    }
+
+    addUser() {
+        this.currentUser.id = this.users.length + 1;
+        this.currentUser.role = 'user';
+        this.currentUser.dateRegister = '01.12.16';
+        console.log(this.currentUser);
+        this.userService.addUser(this.currentUser)
+            .subscribe((data) => { this.currentUser = data; });
+    }
+
+    editUser() {
+        this.currentUser.role = 'user';
+        this.currentUser.dateRegister = '01.12.16';
+        console.log(this.currentUser);
+        this.userService.editUser(this.currentUser)
+            .subscribe((data) => { this.currentUser = data; });
     }
 }

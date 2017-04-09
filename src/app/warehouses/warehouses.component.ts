@@ -6,6 +6,7 @@ import { Product } from '../products/Product';
 
 import { WarehouseService } from './warehouse.service';
 import { ProductService } from '../products/product.service';
+import { TranslateService } from '../shared/translate';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';

@@ -7,6 +7,8 @@ import { Warehouse } from '../Warehouse';
 import { WarehouseService } from '../warehouse.service';
 import { Product } from '../../products/Product';
 import { ProductService } from '../../products/product.service';
+import { TranslateService } from '../../shared/translate';
+
 
 @Component({
     moduleId: module.id,
