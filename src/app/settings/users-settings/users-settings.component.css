@@ -1,0 +1,20 @@
+.row .input-field {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 50px;
+}
+
+.checkedRow {
+    background-color: red;
+}
+
+.users {
+    height: 410px;
+    overflow: scroll;
+}
+
+li {
+    cursor: pointer;
+}

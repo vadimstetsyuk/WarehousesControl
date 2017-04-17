@@ -45,6 +45,15 @@ export class UserService {
             .catch(this.handleError);
     }
 
+    deleteUser(user: User): Observable<User> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.delete(SERVER_NAME + 'users/' + user.id, options)
+            .map(res => <User>res.json())
+            .catch(this.handleError);
+    }
+
     private handleError(err: any): Observable<string> {
         let message: string;
         if (err.message) {

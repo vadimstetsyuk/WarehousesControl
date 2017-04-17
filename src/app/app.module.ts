@@ -8,14 +8,17 @@ import { MaterializeModule } from "angular2-materialize";
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './home/home.component';
-import { TopMenuComponent } from './shared/header/top-menu.component';
+import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ReportsComponent } from './reports/reports.component';
 import { SettingsComponent } from './settings/settings.component';
 import { WarehousesComponent } from './warehouses/warehouses.component';
 import { ErrorsComponent } from './errors-page/errors-page.component';
 import { WarehouseDetailComponent } from './warehouses/warehouse-detail/warehouse-detail.component';
+import { UsersSettingsComponent } from './settings/users-settings/users-settings.component';
+import { WarehousesSettingsComponent } from './settings/warehouses-settings/warehouses-settings.component';
 
+ 
 import { WarehouseService } from './warehouses/warehouse.service';
 import { ProductService } from './products/product.service';
 import { UserService } from './auth/auth.service';
@@ -42,14 +45,16 @@ const appRoutes: Routes = [
     AppComponent,
     AuthComponent,
     HomeComponent,
-    TopMenuComponent,
+    HeaderComponent,
     FooterComponent,
     ReportsComponent,
     SettingsComponent,
     WarehousesComponent,
     ErrorsComponent,
     WarehouseDetailComponent,
-    TranslatePipe
+    TranslatePipe,
+    UsersSettingsComponent,
+    WarehousesSettingsComponent
   ],
   imports: [
     BrowserModule,
