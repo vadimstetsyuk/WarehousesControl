@@ -1,0 +1,226 @@
+<div class="card-detail">
+  <div class="col s12 m7">
+    <div class="card horizontal">
+      <div class="card-image">
+
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <a class="waves-effect waves-light btn" (click)="showPopupAddWarehouse()"><i class="material-icons left">add</i>{{ 'BUTTON.ADD_WAREHOUSE' | translate }}</a>
+          <a class="waves-effect waves-light btn" [ngClass]="{ disabled: !currentWarehouse.id }" (click)="showPopupEditWarehouse()"><i class="material-icons left">mode_edit</i>{{ 'BUTTON.EDIT_WAREHOUSE' | translate }}</a>
+          <a class="waves-effect waves-light btn" [ngClass]="{ disabled: !currentWarehouse.id }" (click)="showPopupDeleteWarehouse()"><i class="material-icons left">delete</i>{{ 'BUTTON.DELETE_WAREHOUSE' | translate }}</a>
+
+          <!-- Switch -->
+          <div class="switch right">
+            <label> 
+              {{ 'LABEL.USERS_SETTINGS' | translate }}
+                <input type="checkbox" checked (click)="toogleActivePage()">
+                <span class="lever"></span>
+              {{ 'LABEL.WAREHOUSES_SETTINGS' | translate }}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="popup">
+  <popup #popupAddWarehouse (confirmClick)="addWarehouse()">
+    <form class="form-horizontal">
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">view_list</i>
+          <input id="typeProduct" type="text" class="validate" name="typeProduct" [(ngModel)]="currentWarehouse.typeProduct" />
+          <label for="typeProduct">{{ 'LABEL.TYPE_PRODUCT' | translate }}: </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">label</i>
+          <input id="name" type="text" class="validate" name="name" [(ngModel)]="currentWarehouse.name" />
+          <label for="name">{{ 'LABEL.NAME' | translate }}: </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>{{ 'LABEL.IMG' | translate }}</span>
+            <input type="file">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="Upload one picture">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">info_outline</i>
+          <input id="info" type="text" class="validate" name="info" [(ngModel)]="currentWarehouse.info" />
+          <label for="info">{{ 'LABEL.INFO' | translate }}</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">call_received</i>
+          <input id="minTemperature" type="text" class="validate" name="minTemperature" [(ngModel)]="currentWarehouse.minTemperature"
+          />
+          <label for="minTemperature">{{ 'LABEL.MIN_TEMPERATURE' | translate }}</label>
+        </div>
+
+        <div class="input-field col s6">
+          <i class="material-icons prefix">call_made</i>
+          <input id="maxTemperature" type="text" class="validate" name="maxTemperature" [(ngModel)]="currentWarehouse.maxTemperature"
+          />
+          <label for="maxTemperature">{{ 'LABEL.MAX_TEMPERATURE' | translate }}</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">call_received</i>
+          <input id="minHumidity" type="text" class="validate" name="minHumidity" [(ngModel)]="currentWarehouse.minHumidity" />
+          <label for="minHumidity">{{ 'LABEL.MIN_HUMIDITY' | translate }}</label>
+        </div>
+
+        <div class="input-field col s6">
+          <i class="material-icons prefix">call_made</i>
+          <input id="maxHumidity" type="text" class="validate" name="maxHumidity" [(ngModel)]="currentWarehouse.maxHumidity" />
+          <label for="maxHumidity">{{ 'LABEL.MAX_HUMIDITY' | translate }}</label>
+        </div>
+      </div>
+    </form>
+  </popup>
+
+  <popup #popupEditWarehouse (confirmClick)="editWarehouse()">
+    <form class="form-horizontal">
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">perm_identity</i>
+          <input id="id" type="text" class="validate" name="id" [(ngModel)]="currentWarehouse.id" disabled />
+          <label for="id" class="active">Id:</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">view_list</i>
+          <input id="typeProduct" type="text" class="validate" name="typeProduct" [(ngModel)]="currentWarehouse.typeProduct" />
+          <label for="typeProduct" class="active">{{ 'LABEL.TYPE_PRODUCT' | translate }}: </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">label</i>
+          <input id="name" type="text" class="validate" name="name" [(ngModel)]="currentWarehouse.name" />
+          <label for="name" class="active">{{ 'LABEL.NAME' | translate }}: </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>Вибрати файл...</span>
+            <input type="file">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="{{ currentWarehouse.img }}">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">info_outline</i>
+          <input id="info" type="text" class="validate" name="info" [(ngModel)]="currentWarehouse.info" />
+          <label for="info" class="active">{{ 'LABEL.INFO' | translate }}</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">call_received</i>
+          <input id="minTemperature" type="text" class="validate" name="minTemperature" [(ngModel)]="currentWarehouse.minTemperature"
+          />
+          <label for="minTemperature" class="active">{{ 'LABEL.MIN_TEMPERATURE' | translate }}</label>
+        </div>
+
+        <div class="input-field col s6">
+          <i class="material-icons prefix">call_made</i>
+          <input id="maxTemperature" type="text" class="validate" name="maxTemperature" [(ngModel)]="currentWarehouse.maxTemperature"
+          />
+          <label for="maxTemperature" class="active">{{ 'LABEL.MAX_TEMPERATURE' | translate }}</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">call_received</i>
+          <input id="minHumidity" type="text" class="validate" name="minHumidity" [(ngModel)]="currentWarehouse.minHumidity" />
+          <label for="minHumidity" class="active">{{ 'LABEL.MIN_HUMIDITY' | translate }}</label>
+        </div>
+
+        <div class="input-field col s6">
+          <i class="material-icons prefix">call_made</i>
+          <input id="maxHumidity" type="text" class="validate" name="maxHumidity" [(ngModel)]="currentWarehouse.maxHumidity" />
+          <label for="maxHumidity" class="active">{{ 'LABEL.MAX_HUMIDITY' | translate }}</label>
+        </div>
+      </div>
+    </form>
+  </popup>
+
+  <popup #popupDeleteWarehouse (confirmClick)="deleteWarehouse()">
+    <form class="form-horizontal">
+      <table>
+        <div class="row">
+          <span>Вибрати склад: </span>
+          <div class="btn-group" dropdown [dropup]="true">
+            <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+    {{ currentWarehouse.name }} <span class="caret"></span>
+  </button>
+            <ul *dropdownMenu class="dropdown-menu" role="menu">
+              <li role="menuitem" *ngFor="let warehouse of warehouses" (click)="selectWarehouse(warehouse.id)">
+                <a class="dropdown-item">{{ warehouse.name }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </table>
+    </form>
+  </popup>
+</div>
+
+<div class="warehouses">
+  <table class="highlight responsive-table">
+    <thead>
+      <tr>
+        <th data-field="id">ID</th>
+        <th data-field="typeProduct">{{ 'LABEL.TYPE_PRODUCT' | translate }}</th>
+        <th data-field="name">{{ 'LABEL.NAME' | translate }}</th>
+        <th data-field="img">{{ 'LABEL.IMG' | translate }}</th>
+        <th data-field="info">{{ 'LABEL.INFO' | translate }}</th>
+        <th data-field="amountProducts">{{ 'LABEL.AMOUNT_PRODUCTS' | translate }}</th>
+        <th data-field="temperature">{{ 'LABEL.TEMPERATURE' | translate }}</th>
+        <th data-field="humidity">{{ 'LABEL.HUMIDITY' | translate }}</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let warehouse of warehouses" (click)="rowClicked(warehouse.id)" [ngClass]="{ checkedRow: defineStyle(warehouse.id) }">
+        <td>{{ warehouse.id }}</td>
+        <td>{{ warehouse.typeProduct }}</td>
+        <td>{{ warehouse.name }}</td>
+        <td>{{ warehouse.img }}</td>
+        <td>{{ warehouse.info }}</td>
+        <td>{{ warehouse.amountProducts }}</td>
+        <td>{{ warehouse.minTemperature }} - {{ warehouse.maxTemperature }}</td>
+        <td>{{ warehouse.minHumidity }} - {{ warehouse.maxHumidity }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
