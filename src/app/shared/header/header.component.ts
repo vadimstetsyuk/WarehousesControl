@@ -4,11 +4,11 @@ import { TranslateService } from '../translate';
 
 @Component({
     moduleId: module.id,
-    selector: 'top-menu',
-    templateUrl: 'top-menu.component.html'
+    selector: 'header-menu',
+    templateUrl: 'header.component.html'
 })
 
-export class TopMenuComponent implements OnInit, OnChanges {
+export class HeaderComponent implements OnInit, OnChanges {
     @Input() public isActiveTabs: boolean;
     public loginLabel: string;
 

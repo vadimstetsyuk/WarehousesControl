@@ -4,4 +4,13 @@
     left: 0; bottom: 0; /* Левый нижний угол */
     width: 100%; /* Ширина слоя */
     z-index: 1;
+    padding-top: 5px;
+}
+
+.row {
+    height: 20px;
+}
+
+li {
+    cursor: pointer;
 }
