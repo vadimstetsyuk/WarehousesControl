@@ -44,4 +44,26 @@ export const LANG_UA_TRANS = {
     'BUTTON.SIGN_IN': 'Увійти',
     'LABEL.ENTER_EMAIL': 'Введіть e-mail',
     'LABEL.ENTER_PASSWORD': 'Введіть пароль',
+
+    // warehouses-settings
+    'BUTTON.ADD_WAREHOUSE': 'Додати склад',
+    'BUTTON.EDIT_WAREHOUSE': 'Редагувати склад',
+    'BUTTON.DELETE_WAREHOUSE': 'Видалити склад',
+
+    'LABEL.USERS_SETTINGS': 'Користувачі',
+    'LABEL.WAREHOUSES_SETTINGS': 'Склади',
+
+    'LABEL.TYPE_PRODUCT': 'Тип продукту',
+    'LABEL.NAME': 'Назва складу',
+    'LABEL.IMG': 'Зображення',
+    'LABEL.INFO': 'Призначення',
+    'LABEL.AMOUNT_PRODUCTS': 'Кількість продуктів',
+    'LABEL.MIN_TEMPERATURE': 'Min t`',
+    'LABEL.MAX_TEMPERATURE': 'Max t`',
+    'LABEL.MIN_HUMIDITY': 'Min h`',
+    'LABEL.MAX_HUMIDITY': 'Max h`',
+    'LABEL.TEMPERATURE': 'Температура',
+    'LABEL.HUMIDITY': 'Вологість',
+
+
 };

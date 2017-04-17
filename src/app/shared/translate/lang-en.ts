@@ -44,5 +44,24 @@ export const LANG_EN_TRANS = {
     'LABEL.ENTER_EMAIL': 'Enter email',
     'LABEL.ENTER_PASSWORD': 'Enter password',
     
+        // warehouses-settings
+    'BUTTON.ADD_WAREHOUSE': 'Add warehouse',
+    'BUTTON.EDIT_WAREHOUSE': 'Edit warehouse',
+    'BUTTON.DELETE_WAREHOUSE': 'Delete warehouse',
+    
+    'LABEL.USERS_SETTINGS': 'Users',
+    'LABEL.WAREHOUSES_SETTINGS': 'Warehouses',
+
+    'LABEL.TYPE_PRODUCT': 'Type of products',
+    'LABEL.NAME': 'Name of the warehouse',
+    'LABEL.IMG': 'Image',
+    'LABEL.INFO': 'Appointment',
+    'LABEL.AMOUNT_PRODUCTS': 'Amount of products',
+    'LABEL.MIN_TEMPERATURE': 'Min t`',
+    'LABEL.MAX_TEMPERATURE': 'Max t`',
+    'LABEL.MIN_HUMIDITY': 'Min h`',
+    'LABEL.MAX_HUMIDITY': 'Max h`',
+    'LABEL.TEMPERATURE': 'Temperature',
+    'LABEL.HUMIDITY': 'Humidity',
 
 };
