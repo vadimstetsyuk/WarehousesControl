@@ -1,3 +1,4 @@
 # Warehouses Control
 
-The computer control system, that designed for storage products in stock
+The project published by url:
+https://vadimstetsyuk.github.io/companies-manager-frontend/
